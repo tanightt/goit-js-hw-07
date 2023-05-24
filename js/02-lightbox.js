@@ -4,7 +4,10 @@ import { galleryItems } from './gallery-items.js';
 const galleryList = document.querySelector('.gallery');
 onCreateGalleryCards();
 
-galleryList.addEventListener('click', onGalleryEvent);
+ const lightbox = new SimpleLightbox('.gallery a', { 
+        captionsData: 'alt',
+        captionDelay: 250,
+    });
 
 function onCreateGalleryCards() {
     let galleryCards = '';
@@ -18,16 +21,4 @@ function onCreateGalleryCards() {
     galleryCards += galleryCard;
 }); 
     galleryList.insertAdjacentHTML("afterbegin", galleryCards);
-}
-
-function onGalleryEvent(event) {
-    event.preventDefault();
-    
-    if (event.target.nodeName !== 'IMG') {
-        return;
-    }
-    const lightbox = new SimpleLightbox('.gallery a', { 
-        captionsData: 'alt',
-        captionDelay: 250,
-    });
 }
